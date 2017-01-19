@@ -1,0 +1,70 @@
+
+<html
+><head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Contact Us</title>
+
+	
+</head>
+<body>
+	<style type="text/css">
+	ul.errorlist {
+		margin: 0;
+		padding: 0;
+	}
+	.errorlist li{
+		background-color: red;
+		color: white;
+		display: block;
+		font-size: 10px;
+		margin: 0 0 3px;
+		padding: 4px 5px;
+	}
+	</style>
+	
+	<h1>Contact Us</h1>
+	{% if form.errors%}
+		<p style="color:red">
+		Plese correct the error{{ form.errors|pluralize }} below. 
+		</p>
+	{% endif%}
+	
+	<form action="" method="post">
+		<table>
+			<tr>
+				<div class="field">
+				<td>{{form.subject.errors}}</td>
+			</tr>
+			<tr>
+				<td><label for "id_subject">Subject:</label></td>
+				<td>{{form.subject}}</td>
+			</div>	
+			</tr>
+		<tr>
+		<div class="field">
+			{{form.email.errors}}
+			<td><label for "id_email">Your e-mail address:</label></td>
+			<td>{{form.email}}</td>
+		</div>
+		</tr>
+		<tr>
+		<div class="field{% if form.message.errors%} errors{% endif%}">
+			{% if form.message.errors %}
+			<ul>
+				{% for error in form.message.errors %}
+					<li><strong>{{ error}}</strong></li>
+				{% endfor %}
+			</ul>
+			{% endif %}
+			<td><label for "id_message">Message:</label></td>
+			<td>{{form.message}}</td>
+		</div>
+		</tr>
+		<tr>
+		{% csrf_token %}
+		<td><input type="submit" value="Submit"></td>
+		</tr>
+		</table>
+	</form>
+</body>
+</html>

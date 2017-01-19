@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<title>Book Search</title>
+</head>
+<body>
+	<p>You searched for <strong>{{ query}}</strong></p>
+	
+	{% if books %}
+	<p>We found <strong>{{books|length}}</strong> match{{ books|pluralize:",es" }}.</p>
+	<ul>
+		{% for book in books %}
+		<li>{{ book.title }}</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+		<p>No books matched your search criteria.</p>
+	{% endif %}
+	
+</body>
+</html>
